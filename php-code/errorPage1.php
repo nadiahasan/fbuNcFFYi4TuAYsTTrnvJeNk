@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body style="background-color: ivory">
 
 <div>
-    Session Expired.<br>
+    <h2>Session Expired</h2>
+        <br>
     To return to main page, <a href="index.php">click here</a>.
 </div>
 

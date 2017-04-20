@@ -1,0 +1,122 @@
+#signupForm{
+    background-color: antiquewhite;
+    width: 300px;
+    border: 3px solid brown;
+    margin: auto;
+    padding: 80px;
+}
+
+#searchForm{
+    width: 300px;
+    border: 2px ;
+    padding-top: 10px;
+    float: right;
+}
+
+.logoutForm{
+
+}
+#logoutBody {
+    background-color: ivory;
+}
+#abuse{
+    background-color: antiquewhite;
+    width: 800px;
+    border: 3px solid brown;
+    margin: auto;
+    padding: 80px;
+}
+
+#currentCoursesBody{
+    background-color: azure;
+}
+
+#indexPageBody{
+    background-color: ivory;
+}
+
+#loginForm{
+    width: 185px;
+    border: 2px solid brown;
+    padding: 30px;
+    margin-left: 400px;
+    height: 180px;
+    float: left;
+    margin-right: 10px;
+}
+
+#signupIndexPage{
+    width: 185px;
+    border: 2px solid brown;
+    padding: 30px;
+    overflow: auto;
+    height: 180px;
+    float: left;
+}
+
+#aboutIndexPage{
+    margin-left: 400px;
+    margin-right: 350px;
+    margin-bottom: 20px;
+    width: 400px;
+    border: 2px solid brown;
+    padding: 50px;
+}
+
+#mainFrame{
+    border: 2px solid brown;
+    background-color: ivory;
+    width: 50%;
+    padding: 5px;
+}
+#pendingUsersBody{
+    background-color: azure;
+}
+#pendingUsersOuterDiv{
+    background-color: ivory;
+    width: 50%;
+}
+
+#currentUsersBody{
+    background-color: azure;
+}
+#currentUsersOuterDiv{
+    background-color: ivory;
+    width: 50%;
+}
+#abuseReportsOuterDiv{
+    background-color: ivory;
+    width: 60%;
+}
+#abuseReportsBody{
+    background-color: azure;
+}
+#courseCommentsBody{
+    background-color: azure;
+}
+
+button{
+    font-size: 12pt;
+}
+#currentCoursesOuterDiv{
+    background-color: ivory;
+    width: 60%;
+}
+#newCourseForm{
+    background-color: antiquewhite;
+    width: 300px;
+    border: 3px solid brown;
+    margin-top: 30px;
+    padding: 50px;
+}
+
+#backupPageBody{
+   background-color: azure;
+}
+#specialCase{
+    display: none;
+
+}
+.admin{
+    color:red;
+}

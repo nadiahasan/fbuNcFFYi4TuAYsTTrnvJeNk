@@ -11,13 +11,46 @@ session_start();
 
 if (!isset($_SESSION['username']))
 {
-   header("Location: errorPage1.php");
+   header("Location: index.php");
 }
 else {
+
+    $servername = "localhost";
+    $username = "root";
+    $password = "root";
+    $dbname = "RATEMYCOURSE";
+
+// Create a connection to mysql server
+    $conn = new mysqli($servername, $username, $password,$dbname);
+
+// Check if connection is not successful
+    if ($conn->connect_error) {
+        die("Connection to serverfailed: " . $conn->connect_error);
+    }
+
+    $sql_command="select * from USERS where USERNAME='".$_SESSION['username']."' and PRIVILEGE_LEVEL=1;";
+
+    $result = $conn->query($sql_command); // submitting query to database
+
+
+
+// If there is at least one user with the same username or email, display an error message
+
+    if($result->num_rows !==0){
+        include "adminMenu.php";
+    }
+
+
+
     ?>
+
     <html>
-    <body>
-    <div class="form" id="searchForm">
+    <head>
+        <link rel="stylesheet" type="text/css" href="rateMyCourse.css">
+    </head>
+    <body style="background-color: azure;">
+
+    <div class="form" id="searchForm" style="float: right">
 
         <form method="post" action="searchResults.php">
             <label>Search for a course: </label>
@@ -26,18 +59,10 @@ else {
         </form>
 
     </div>
-    <div>
-        We did it!!!
-    </div>
+    <?php
+    include "topMenu.php";
 
-    <div class="logoutForm">
-        <form method="post" action="logout.php">
-
-            <input type="submit" value="Logout">
-        </form>
-
-
-    </div>
+    ?>
 
     </body>
     </html>

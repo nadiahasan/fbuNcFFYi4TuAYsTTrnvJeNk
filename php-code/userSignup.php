@@ -35,29 +35,31 @@ $sql_command="select * from USERS where USERNAME='".$_POST['username']."' or EMA
 
 $result = $conn->query($sql_command); // submitting query to database
 
-
+include "topMenu.php";
 // If there is at least one user with the same username or email, display an error message
 
 if($result->num_rows >0){
 
-    echo "<h1>Sign Up Error</h1>";
+    echo "<html><body style='background-color: azure'><h1>Sign Up Error</h1></body></html>";
     echo "Username or email already exists. Please Try a different username and/or email. <br>";
     echo "<a href='signupPage.php'>Click here to re-enter your sign-up information</a>";
 
 
-}else{
+}
+else {
 
     //Otherwise, add the user to the PENDING_USERS table, and hash the password
-    $sql_command="insert into PENDING_USERS values('".$_POST['username']."', '".password_hash($_POST['password'],PASSWORD_DEFAULT)."', '".$_POST['email']."',
-'".$_POST['firstName']."', '".$_POST['lastName']."', 2);";
+    $sql_command="insert into USERS values('".$_POST['username']."', '".password_hash($_POST['password'],PASSWORD_DEFAULT)."', '".$_POST['email']."',
+'".$_POST['firstName']."', '".$_POST['lastName']."', 2,1);";
 
 
 
 
     $result = $conn->query($sql_command); // submitting query to database
 
+
     // Printing a success report to the user
-    echo "<h1>Signup information submitted</h1>";
+    echo "<html><body style='background-color: azure'><h1>Signup information submitted</h1></body></html>";
     echo "Your signup information is submitted to the admin for approval.<br>";
     echo "Meanwhile enjoy browsing the website.<br>";
 

@@ -1,0 +1,190 @@
+-- MySQL dump 10.13  Distrib 5.6.35, for osx10.9 (x86_64)
+--
+-- Host: localhost    Database: RATEMYCOURSE
+-- ------------------------------------------------------
+-- Server version	5.6.35
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `COURSE`
+--
+
+DROP TABLE IF EXISTS `COURSE`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `COURSE` (
+  `COURSE_ID` char(10) NOT NULL,
+  `COURSE_NAME` varchar(50) NOT NULL,
+  `COLLEGE` varchar(50) NOT NULL,
+  `COURSE_DESCRIPTION` varchar(2000) DEFAULT NULL,
+  PRIMARY KEY (`COURSE_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `COURSE`
+--
+
+LOCK TABLES `COURSE` WRITE;
+/*!40000 ALTER TABLE `COURSE` DISABLE KEYS */;
+INSERT INTO `COURSE` VALUES ('CEN4010','Software Engineering','IT','Software life cycle'),('CNT3004','Computer Networks','IT','Introduction to computer networks'),('COP3530','Data Structures','IT','Introduction to algorithms and data structures'),('COP3834','Web App Development','IT','Introduction to web app development'),('COP4610','Operating Systems','IT','Concepts of operating systems');
+/*!40000 ALTER TABLE `COURSE` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `COURSE_RATINGS`
+--
+
+DROP TABLE IF EXISTS `COURSE_RATINGS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `COURSE_RATINGS` (
+  `LEVEL_OF_DIFFICULTY` decimal(1,0) NOT NULL,
+  `RECOMMENDED` decimal(1,0) DEFAULT NULL,
+  `COURSE_ID` char(10) NOT NULL,
+  `USERNAME` varchar(30) NOT NULL,
+  PRIMARY KEY (`COURSE_ID`,`USERNAME`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `COURSE_RATINGS`
+--
+
+LOCK TABLES `COURSE_RATINGS` WRITE;
+/*!40000 ALTER TABLE `COURSE_RATINGS` DISABLE KEYS */;
+INSERT INTO `COURSE_RATINGS` VALUES (1,0,'COP3530','user1'),(5,0,'COP3530','user2'),(2,1,'COP3530','user5');
+/*!40000 ALTER TABLE `COURSE_RATINGS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `PREREQUISITE`
+--
+
+DROP TABLE IF EXISTS `PREREQUISITE`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `PREREQUISITE` (
+  `PREREQUISITE_ID` char(10) NOT NULL,
+  `COURSE_ID` char(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `PREREQUISITE`
+--
+
+LOCK TABLES `PREREQUISITE` WRITE;
+/*!40000 ALTER TABLE `PREREQUISITE` DISABLE KEYS */;
+/*!40000 ALTER TABLE `PREREQUISITE` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `REPORTS`
+--
+
+DROP TABLE IF EXISTS `REPORTS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `REPORTS` (
+  `REPORT_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `REPORTER_FIRSTNAME` varchar(30) NOT NULL,
+  `REPORTER_LASTNAME` varchar(30) NOT NULL,
+  `REPORTER_USERID` varchar(50) DEFAULT NULL,
+  `EMAIL` varchar(30) NOT NULL,
+  `REPORT_DATE` date NOT NULL,
+  `REPORT_MESSAGE` varchar(10000) NOT NULL,
+  `COURSE_ID` char(10) NOT NULL,
+  `COMMENT_ID` int(11) NOT NULL,
+  PRIMARY KEY (`REPORT_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `REPORTS`
+--
+
+LOCK TABLES `REPORTS` WRITE;
+/*!40000 ALTER TABLE `REPORTS` DISABLE KEYS */;
+INSERT INTO `REPORTS` VALUES (1,'Edwin','Jordan',NULL,'eJordan@gmail.com','2017-04-14','Not relevant comment','COP3530',0);
+/*!40000 ALTER TABLE `REPORTS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `USERS`
+--
+
+DROP TABLE IF EXISTS `USERS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `USERS` (
+  `USERNAME` varchar(30) NOT NULL,
+  `USER_PASSWORD` varchar(64) NOT NULL,
+  `EMAIL` varchar(100) NOT NULL,
+  `FIRST_NAME` varchar(30) NOT NULL,
+  `LAST_NAME` varchar(30) NOT NULL,
+  `PRIVILEGE_LEVEL` smallint(6) NOT NULL,
+  `PENDING_FLAG` tinyint(4) NOT NULL,
+  PRIMARY KEY (`USERNAME`,`EMAIL`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `USERS`
+--
+
+LOCK TABLES `USERS` WRITE;
+/*!40000 ALTER TABLE `USERS` DISABLE KEYS */;
+INSERT INTO `USERS` VALUES ('admin','$2y$10$I/U7I.gPIlLVzj9mDAdCx.iyBI2.a32GyfV.zbBSESntjQTS87hvO','nadiahasan2015@gmail.com','Nadia','Hasan',1,0),('user1','$2y$10$hO17gK6BeRXLebEKnchMNOv0XoFghHpUmYU23wioiUuOuw7dRG.Iq','haroldwelch@gmail.com','Harold','Welch',2,0),('user2','$2y$10$hO17gK6BeRXLebEKnchMNOv0XoFghHpUmYU23wioiUuOuw7dRG.Iq','thomasjohnson@gmail.com','Thomas','Johnson',2,0),('user3','$2y$10$hO17gK6BeRXLebEKnchMNOv0XoFghHpUmYU23wioiUuOuw7dRG.Iq','jamesallmon@gmail.com','James','Allmon',2,1),('user4','$2y$10$hO17gK6BeRXLebEKnchMNOv0XoFghHpUmYU23wioiUuOuw7dRG.Iq','annrochester@gmail.com','Ann','Rochester',2,1),('user5','$2y$10$hO17gK6BeRXLebEKnchMNOv0XoFghHpUmYU23wioiUuOuw7dRG.Iq','mariokim@gmail.com','Mario','Kim',2,0);
+/*!40000 ALTER TABLE `USERS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `USER_COMMENT`
+--
+
+DROP TABLE IF EXISTS `USER_COMMENT`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `USER_COMMENT` (
+  `COMMENT_CATEGORY` int(11) NOT NULL,
+  `USERNAME` varchar(30) NOT NULL,
+  `COMMENT_BODY` varchar(10000) NOT NULL,
+  `COMMENT_DATE` date NOT NULL,
+  `COMMENT_RATING` int(11) DEFAULT NULL,
+  `COURSE_ID` char(10) NOT NULL,
+  `COMMENT_ID` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`COMMENT_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `USER_COMMENT`
+--
+
+LOCK TABLES `USER_COMMENT` WRITE;
+/*!40000 ALTER TABLE `USER_COMMENT` DISABLE KEYS */;
+INSERT INTO `USER_COMMENT` VALUES (1,'user4','EASY COURSE','2017-04-14',4,'COP3530',1),(1,'user3','Hello','2017-04-14',1,'COP3530',2);
+/*!40000 ALTER TABLE `USER_COMMENT` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2017-04-19 12:25:34

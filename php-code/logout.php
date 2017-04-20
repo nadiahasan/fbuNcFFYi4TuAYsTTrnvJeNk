@@ -20,20 +20,27 @@ session_destroy();
 ?>
 
 <html>
-<body>
+<head>
+    <link rel="stylesheet" type="text/css" href="rateMyCourse.css">
+</head>
+<body id="logoutBody">
+<?php
+include "topMenu.php";
+
+?>
 <div class="form" id="searchForm">
 
     <!-- search form -->
     <form method="post" action="searchResults.php">
-        <label>Search for a course: </label>
+        <label style="margin-top: 2px">Search for a course: </label>
         <input type="text" name="courseToSearch">
         <br>
     </form>
 
 </div>
 
-<div>
-    See you soon.
+<div style="font-size: 1.5em;text-align: center;margin:100px">
+   See you soon.
 </div>
 
 </body>

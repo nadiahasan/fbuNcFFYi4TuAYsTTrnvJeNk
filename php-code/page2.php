@@ -29,14 +29,26 @@ if ($conn->connect_error) {
 }
 
 // Creating an sql query based on login information provided by user
-$sql_command="select USER_PASSWORD from USERS where USERNAME='".$_POST["username"]."'";
+$sql_command="select USER_PASSWORD from USERS where USERNAME='".$_POST["username"]."' and PENDING_FLAG=0";
 $result = $conn->query($sql_command);
 
 
-// If there is no user with the given username, an error message is printed
+// If there is no user or user is pending, an error message is printed
 if ($result->num_rows!==1)
 {
-    die("User doesn't exist");
+    $sql_command="select USER_PASSWORD from USERS where USERNAME='".$_POST["username"]."' and PENDING_FLAG=1";
+    $result = $conn->query($sql_command);
+    if($result->num_rows!==1){
+        die("<html>
+<head>
+    <link rel=\"stylesheet\" type=\"text/css\" href=\"rateMyCourse.css\">
+</head>
+<body style=\"background-color: azure;\">
+<h2>User doesn't exist</h2><br/> <p style=\"margin-top: 3px;\">Sign up <a href=\"signupPage.php\">here.</a> </p></body></html>");
+    }else{
+        die("User authorization is pending");
+    }
+
 }
 $row=$result->fetch_assoc();
 
@@ -45,7 +57,9 @@ $row=$result->fetch_assoc();
 if (password_verify($_POST['password'],$row['USER_PASSWORD'])){
     session_start();
     $_SESSION['username']=$_POST['username'];
+
     header("Location: main.php");
+
 }
 else {
     echo "Invalid password";
@@ -54,5 +68,9 @@ else {
 
 
 ?>
+
+
+</body>
+</html>
 
 

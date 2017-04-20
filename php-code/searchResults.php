@@ -11,8 +11,14 @@
 ?>
 
 <html>
+<head>
+    <link rel="stylesheet" type="text/css" href="rateMyCourse.css">
+</head>
 <body>
-<div class="form" id="searchForm">
+<div style="margin-bottom: 10px; float: none; overflow: auto;">
+
+</div>
+<div class="form" id="searchForm" style=" float: right;">
 
     <form method="post" action="searchResults.php">
         <label>Search for a course: </label>
@@ -21,6 +27,9 @@
     </form>
 
 </div>
+
+<div>
+
 
 <?php
 session_start(); // start a new session
@@ -38,6 +47,17 @@ $conn = new mysqli($servername, $username, $password,$dbname);
 if ($conn->connect_error) {
     die("Connection to serverfailed: " . $conn->connect_error);
 }
+?>
+
+    <br/>
+    <?php
+include "topMenu.php";
+
+?>
+
+    <br/><br/>
+    <?php
+
 
 
 $searchWords = explode(" ",$_POST['courseToSearch']); // tokenize the search string based on spaces
@@ -60,17 +80,18 @@ $result = $conn->query($sql_command); // submitting query to database
 // displaying results to the user
 if($result->num_rows>0){
     while($row=$result->fetch_assoc()){
-        echo $row['COURSE_ID'].": ". $row['COURSE_NAME']."<br>";
+        echo $row['COURSE_ID'].": <a href= \"courseComments.php?id=".$row['COURSE_ID']."\">".$row['COURSE_NAME']."</a><br>";
     }
 }else{
     echo "No results found";
 }
 
 
+
 ?>
 
 
-
+</div>
 
 
 </body>
