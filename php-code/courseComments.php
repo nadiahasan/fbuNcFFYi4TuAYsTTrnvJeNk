@@ -2,8 +2,11 @@
 /**
  * Created by PhpStorm.
  * User: nadiahasan
+ * Author: Nadia Hasan
  * Date: 4/15/17
  * Time: 12:50 PM
+ * Purpose: This page handles showing comment section only to registered users.
+ *          Registered users can submit a comment or rate a course.
  */
 session_start(); // start session
 
@@ -22,27 +25,40 @@ if ($conn->connect_error) {
 
 include "adminMenu.php";
 
+// Hadling comment submission
 if(isset($_POST['commentAction'])){
     $course_id=explode("___",$_POST['commentAction']);
-    $course_id=$course_id[1];
+    $course_id=$course_id[1]; // extracting id from "post"
 
+    // Inserting the comment in the database
     $sql_command= "INSERT INTO USER_COMMENT VALUES(1,'".$_SESSION['username']."','".$_POST['cbody']."',NOW(), -1, '".$course_id."',0 );";
 
+
     $result = $conn->query($sql_command); // submitting query to database
+
+
     $sql_command = "select * from COURSE WHERE COURSE_ID='" . $course_id. "';";
     $result = $conn->query($sql_command); // submitting query to database
-    $row = $result->fetch_assoc();
+    $row = $result->fetch_assoc(); // displaying the new added comment on the course page
+
+
+// The next part handles rating submission
 }else if(isset($_POST['ratingAction'])){
 
+    // extracting the course id, to add a rating to a particular
+    // course in the database
     $course_id=explode("___",$_POST['ratingAction']);
     $course_id=$course_id[1];
 
+    // Inserting comment in database
     $sql_command= "INSERT INTO COURSE_RATINGS VALUES(". $_POST['diff']. ",".$_POST['recommend'].",'".$course_id."','".$_SESSION['username']."');";
 
     $result = $conn->query($sql_command); // submitting query to database
 
     $sql_command = "select * from COURSE WHERE COURSE_ID='" . $course_id. "';";
     $result = $conn->query($sql_command); // submitting query to database
+
+    // displaying the new ratings on the course page
     $row = $result->fetch_assoc();
 } else{
 
@@ -79,6 +95,7 @@ include "topMenu.php";
         </tr>
         <tr>
             <?php
+            // Course rating is based on the average level of difficulty
             $sql_command = "select avg(LEVEL_OF_DIFFICULTY) AS difficulty from COURSE_RATINGS WHERE COURSE_ID='" . $course_id . "';";
 
             $result = $conn->query($sql_command); // submitting query to database
@@ -134,6 +151,7 @@ include "topMenu.php";
     </table>
     <br/>
     <?php
+    // if the user is registered, s/he can view the comment and rating forms
     if (isset($_SESSION['username'])) {
         ?>
         <form method="post" action="courseComments.php">

@@ -2,8 +2,10 @@
 /**
  * Created by PhpStorm.
  * User: nadiahasan
+ * Author: Nadia Hasan
  * Date: 4/15/17
  * Time: 12:35 PM
+ * Purpose: This file handles deleting users from database.
  */
 
 session_start(); // start session
@@ -45,6 +47,7 @@ foreach ($_POST as $key => $value) {
     }
     if($_POST['action']==='delete'){
 
+        // Deleting users from database
         $sql_command="DELETE FROM USERS WHERE USERNAME=\"".$keye[0]."\" and EMAIL=\"".$emailee."\";";
         $result = $conn->query($sql_command); // submitting query to database
 

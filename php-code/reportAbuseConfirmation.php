@@ -2,8 +2,11 @@
 /**
  * Created by PhpStorm.
  * User: nadiahasan
+ * Authors: Nadia Hasan, Shawn Godwin
  * Date: 4/16/17
  * Time: 11:50 PM
+ * Purpose: This file handles submitting and inserting an abuse report
+ *          to reports table in database.
  */
 
 session_start(); // start session
@@ -24,6 +27,8 @@ if ($conn->connect_error) {
 
 if(isset($_POST['submit'])) {
     //echo $_POST['course_id']."  ".$_POST['comment_id'];
+
+
     $sql_command=
         "INSERT INTO REPORTS VALUES(0,'".$_POST['f_name']."','".$_POST['l_name']."','".$_POST['u_name']."','".$_POST['email']."',NOW(),'".$_POST['message']."','".$_POST['course_id']."','".$_POST['comment_id']."');";
 

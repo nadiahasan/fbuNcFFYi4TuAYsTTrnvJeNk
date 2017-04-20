@@ -2,6 +2,7 @@
 /**
  * Created by PhpStorm.
  * User: nadiahasan
+ * Author: Nadia Hasan
  * Date: 3/10/17
  * Time: 10:37 AM
  * Purpose: This file handles signup process. It creates a connection to database

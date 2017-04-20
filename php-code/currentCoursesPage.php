@@ -2,8 +2,10 @@
 /**
  * Created by PhpStorm.
  * User: nadiahasan
+ * Author: Nadia Hasan
  * Date: 4/14/17
  * Time: 10:53 PM
+ * Purpose: This file handles the viewing courses or adding new courses
  */
 
 session_start(); // start session
@@ -41,7 +43,7 @@ if($result->num_rows ==0){
 
 <body id="currentCoursesBody">
 <?php
-include "adminMenu.php";
+include "adminMenu.php"; // including admin menu only if admin is using the session
 ?>
 
 <br/>
@@ -72,6 +74,7 @@ include "topMenu.php";
             <tbody>
 
             <?php
+            // Getting the course list from database
                 $sql_command="select * from COURSE";
                 $result=$conn->query($sql_command); // submitting query to database
             if($result->num_rows >0){

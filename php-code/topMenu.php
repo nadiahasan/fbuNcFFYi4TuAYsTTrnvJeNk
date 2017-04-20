@@ -1,3 +1,18 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: nadiahasan
+ * Author: Nadia Hasan
+ * Date: 4/16/17
+ * Time: 8:58 PM
+ * Purpose: This file displays a menu for registered users, with logout button.
+ *          It also displays a link to main page, displayed for all users.
+ */
+
+
+?>
+
+
 <html>
 <head>
 

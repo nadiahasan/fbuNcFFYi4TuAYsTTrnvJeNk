@@ -2,8 +2,12 @@
 /**
  * Created by PhpStorm.
  * User: nadiahasan
+ * Author: Nadia Hasan
  * Date: 4/15/17
  * Time: 10:05 AM
+ * Purpose: This file handles approving/disapproving a pending user
+ *          by setting pending flag to false if admitted to  users table
+ *          or deleting the whole record if not.
  */
 
 session_start(); // start session
@@ -53,11 +57,12 @@ foreach ($_POST as $key => $value) {
         $emailee=$emailee.'.'.$emaile[$x+1];
     }
     if($_POST['action']==='approve'){
-
+        // approving user by updating the pending flag to false
         $sql_command="UPDATE USERS SET PENDING_FLAG=0 WHERE USERNAME=\"".$keye[0]."\" and EMAIL=\"".$emailee."\";";
         $result = $conn->query($sql_command); // submitting query to database
 
     }else if($_POST['action']==='disapprove'){
+        // disapproving a pending user by deleting the whole record from database
         $sql_command="DELETE FROM USERS WHERE USERNAME=\"".$keye[0]."\" and EMAIL=\"".$emailee."\";";
         $result = $conn->query($sql_command); // submitting query to database
 

@@ -2,6 +2,7 @@
 /**
  * Created by PhpStorm.
  * User: nadiahasan
+ * Author: Nadia Hasan
  * Date: 3/9/17
  * Time: 9:02 PM
  * Purpose: This file processes the search request done by user

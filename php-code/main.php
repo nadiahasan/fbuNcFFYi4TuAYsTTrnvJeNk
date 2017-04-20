@@ -2,6 +2,7 @@
 /**
  * Created by PhpStorm.
  * User: nadiahasan
+ * Author: Nadia Hasan
  * Date: 3/9/17
  * Time: 4:02 PM
  *
@@ -39,9 +40,6 @@ else {
     if($result->num_rows !==0){
         include "adminMenu.php";
     }
-
-
-
     ?>
 
     <html>

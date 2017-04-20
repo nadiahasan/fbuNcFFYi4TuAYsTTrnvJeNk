@@ -2,8 +2,11 @@
 /**
  * Created by PhpStorm.
  * User: nadiahasan
+ * Author: Nadia Hasan
  * Date: 4/14/17
  * Time: 10:52 PM
+ * Purpose: This file handles displaying/deleting current users
+ *          This page can be accessed by only the system admin.
  */
 
 session_start(); // start session
@@ -21,6 +24,7 @@ if ($conn->connect_error) {
     die("Connection to serverfailed: " . $conn->connect_error);
 }
 
+// checking if the admin is now using the session by checking the privilege level
 $sql_command="select * from USERS where USERNAME='".$_SESSION['username']."' and PRIVILEGE_LEVEL=1;";
 
 $result = $conn->query($sql_command); // submitting query to database
@@ -74,10 +78,13 @@ include "topMenu.php";
 
             <tbody>
             <?php
+
+            // Retrieving users from database
             $sql_command="select * from USERS";
             $result=$conn->query($sql_command); // submitting query to database
             if($result->num_rows >0){
 
+                // extracting email
                 while($row=$result->fetch_assoc()){
                     $emaile=explode(".", $row['EMAIL']);
                     $emailee=$emaile[0];
@@ -86,6 +93,7 @@ include "topMenu.php";
                         $emailee=$emailee.'&&&'.$emaile[$x+1];
                     }
                   echo "<tr>";
+                    // Not allowing the admin to delete him/herself
                     if($row['USERNAME']=='admin'){
                         echo "<td/>";
                         echo "<td id='specialCase'><input type=\"checkbox\" name=\"".$row['USERNAME']."___".$emailee."\"/></td><td class='admin'>".$row['FIRST_NAME']."</td><td class='admin'>".$row['LAST_NAME']."</td><td class='admin'>".$row['USERNAME']."</td><td class='admin'>".$row['EMAIL']."</td>";

@@ -2,8 +2,12 @@
 /**
  * Created by PhpStorm.
  * User: nadiahasan
+ * Authors: Nadia Hasan, Shawn Godwin
  * Date: 4/15/17
  * Time: 3:40 PM
+ * Purpose: This file displays a report abuse form related to a specific
+ *          comment in a specific course page. It retrives the course id and
+ *          comment id.
  */
 session_start(); // start session
 

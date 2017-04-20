@@ -2,8 +2,10 @@
 /**
  * Created by PhpStorm.
  * User: nadiahasan
+ * Author: Nadia Hasan
  * Date: 4/15/17
  * Time: 4:17 PM
+ * Purpose: This file handles the abuse reports by s
  */
 
 session_start(); // start session
@@ -20,6 +22,7 @@ if ($conn->connect_error) {
     die("Connection to serverfailed: " . $conn->connect_error);
 }
 
+// Abuse reports can only be viewed by admin.
 $sql_command="select * from USERS where USERNAME='".$_SESSION['username']."' and PRIVILEGE_LEVEL=1;";
 
 $result = $conn->query($sql_command); // submitting query to database

@@ -1,4 +1,16 @@
 <?php
+/**
+* Created by PhpStorm.
+* User: nadiahasan
+* Author: Nadia Hasan
+* Date: 4/9/17
+* Time: 4:02 PM
+*
+* Purpose: This file displays a menu that can only be vieweb by the admin.
+*/
+
+
+// checking if the admin is now using the session by checking the privilege level
 $sql_command="select * from USERS where USERNAME='".$_SESSION['username']."' and PRIVILEGE_LEVEL=1;";
 
 $result = $conn->query($sql_command); // submitting query to database

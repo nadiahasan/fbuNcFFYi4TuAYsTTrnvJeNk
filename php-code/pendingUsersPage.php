@@ -2,8 +2,11 @@
 /**
  * Created by PhpStorm.
  * User: nadiahasan
+ * Author: Nadia Hasan
  * Date: 4/14/17
  * Time: 10:23 PM
+ * Purpose: This file views displays users table to admin, with checkboxes
+ *          for approval/disapproval actions.
  */
 
 session_start(); // start session
@@ -21,6 +24,7 @@ if ($conn->connect_error) {
     die("Connection to serverfailed: " . $conn->connect_error);
 }
 
+// only admin can view this page
 $sql_command="select * from USERS where USERNAME='".$_SESSION['username']."' and PRIVILEGE_LEVEL=1;";
 
 $result = $conn->query($sql_command); // submitting query to database
@@ -68,6 +72,7 @@ include "topMenu.php";
             <tbody>
 
             <?php
+                // Displaying pending users to admin
                 $sql_command="select * from USERS where PENDING_FLAG=1;";
 
                 $result = $conn->query($sql_command); // submitting query to database

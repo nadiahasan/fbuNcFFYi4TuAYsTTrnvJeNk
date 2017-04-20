@@ -2,6 +2,7 @@
 /**
  * Created by PhpStorm.
  * User: nadiahasan
+ * Author: Nadia Hasan
  * Date: 3/9/17
  * Time: 1:19 PM
  * Purpose: This file represents the signup page. It contains the signup form

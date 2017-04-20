@@ -2,8 +2,10 @@
 /**
  * Created by PhpStorm.
  * User: nadiahasan
+ * Author: Nadia Hasan
  * Date: 4/15/17
  * Time: 12:08 PM
+ * Purpose: This file handles course addition by adding new course to database
  */
 
 session_start(); // start session
@@ -33,7 +35,7 @@ if($result->num_rows ==0){
     die("Unauthorized Access");
 
 }
-
+// Adding course to database
 $sql_command="INSERT INTO COURSE VALUES('".$_POST['courseID']."','".$_POST['courseName']."','".$_POST['collegeName']."','".$_POST['courseDesc']."');";
 $result = $conn->query($sql_command); // submitting query to database
 

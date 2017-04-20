@@ -2,8 +2,11 @@
 /**
  * Created by PhpStorm.
  * User: nadiahasan
+ * Author: Nadia Hasan
  * Date: 4/14/17
  * Time: 11:01 PM
+ * Purpose: This file contains new course form, and checks that access
+ *          is granted to only the admin
  */
 
 session_start();

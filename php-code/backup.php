@@ -2,8 +2,12 @@
 /**
  * Created by PhpStorm.
  * User: nadiahasan
+ * Author: Nadia Hasan
  * Date: 4/16/17
  * Time: 8:58 PM
+ * Purpose: This file handles the system backup by dumping database in a
+ *          ".mysql" file that has all database structure info and data.
+ *          This file may not work on other
  */
 
 
@@ -60,9 +64,18 @@ include "topMenu.php";
     <button type="submit" name="prepare" value="doit">Prepare Database Backup File</button>
 </form>
 <?php
+
+
 if ($_POST['prepare']==="doit")
 {
-    exec('/Applications/MAMP/Library/bin/mysqldump --user=root --password=root --host=localhost RATEMYCOURSE > /Users/nadiahasan/PhpstormProjects/RateMyCourse/backups/backup.mysql');
+    $mypath=getcwd();
+
+    // Currently for this code to be functional, mysql username is "root", and password is "root"
+    // This should be changed in the next version
+    // Currently, this app is set to use mysqldump to create the backups and the directory of the installation is
+    // "/Applications/MAMP/Library/bin". This needs to be changed to reflect the location of mysqldump.
+    //
+    exec('/Applications/MAMP/Library/bin/mysqldump --user=root --password=root --host=localhost RATEMYCOURSE > '.$mypath.'/backups/backup.mysql');
     $now = getdate();
     ?>
     <a href="backups/backup.mysql" download="backup<?php echo "_".$now['month']."_".$now['mday']."_".$now['year']; ?>.mysql">Download backup</a>

@@ -1,3 +1,12 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: nadiahasan
+ * Author: Nadia Hasan
+ * Date: 3/9/17
+ * Purpose: This file displays an error when session expires.
+ */
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
